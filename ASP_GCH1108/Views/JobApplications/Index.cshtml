@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ASP_GCH1108.Models.JobApplication>
+
+@{
+    ViewData["Title"] = "My Job Applications";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Experience</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.JobList.JobTitle</td>
+                <td>@item.Experience</td>
+                @if (item.Status == true)
+                {
+                    <td>Accepted</td>
+                } else
+                {
+                    <td>Waiting</td>
+                }
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ApplicationId" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.ApplicationId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ApplicationId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+<br />

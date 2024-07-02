@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ASP_GCH1108.Models.JobApplication>
+
+@{
+    ViewData["Title"] = "All Job Applications";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>User Name</th>
+            <th>Experience</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.JobList.JobTitle</td>
+                <td>@item.User.Email</td>
+                <td>@item.Experience</td>
+                @if (item.Status == true)
+                {
+                    <td>Accepted</td>
+                }else
+                {
+                    <td>Waiting</td>
+                }
+
+                <td>
+                    <form asp-action="Allow" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@item.ApplicationId" />
+                        <button type="submit" class="btn btn-success">Allow</button>
+                    </form>
+                    <form asp-action="DetailEmployer" asp-route-id="@item.ApplicationId" style="display:inline;">
+                        <button type="submit" class="btn btn-info">Detail</button>
+                    </form>
+                    <form asp-action="DeleteEP" method="post" style="display:inline;" onsubmit="return confirmDelete();">
+                        <input type="hidden" name="id" value="@item.ApplicationId" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+<br />
+@section Scripts {
+    <script type="text/javascript">
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this job application?');
+        }
+    </script>
+}

@@ -1,0 +1,49 @@
+﻿@model ASP_GCH1108.Models.JobApplication
+
+@{
+    ViewData["Title"] = "Delete Job Application";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Job Application</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Application Id</dt>
+        <dd class="col-sm-10">@Model.ApplicationId</dd>
+
+        <dt class="col-sm-2">Introduction</dt>
+        <dd class="col-sm-10">@Model.Introduction</dd>
+
+        <dt class="col-sm-2">Description</dt>
+        <dd class="col-sm-10">@Model.Description</dd>
+
+        <dt class="col-sm-2">Experience</dt>
+        <dd class="col-sm-10">@Model.Experience</dd>
+
+        <dt class="col-sm-2">Status</dt>
+        <dd class="col-sm-10">@Model.Status</dd>
+
+        <dt class="col-sm-2">Qualification</dt>
+        @* <dd class="col-sm-10">@Model.Qualification.DegreeType</dd> *@
+
+        <dt class="col-sm-2">User Email</dt>
+        <dd class="col-sm-10">@Model.User.Email</dd>
+
+        <dt class="col-sm-2">Picture</dt>
+        <dd class="col-sm-10">
+            <img src="~/images/@Model.UrlImage" alt="Application Image" style="max-width: 200px; max-height: 200px;" />
+        </dd>
+    </dl>
+</div>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="ApplicationId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+<br />
+<br />
+<br />

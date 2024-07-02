@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ASP_GCH1108.Models.JobList>
+
+@{
+    ViewData["Title"] = "Available Jobs";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Job Description</th>
+            <th>Required Qualifications</th>
+            <th>Application Deadline</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.JobTitle)</td>
+                <td>@Html.DisplayFor(modelItem => item.JobDescription)</td>
+                <td>@Html.DisplayFor(modelItem => item.RequiredProfiles)</td>
+                <td>@Html.DisplayFor(modelItem => item.ApplicationDeadline)</td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Create" asp-controller="JobApplications" asp-route-jobId="@item.JobId">Apply</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+<br />

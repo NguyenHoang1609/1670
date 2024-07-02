@@ -1,0 +1,48 @@
+﻿@model JobList
+
+@{
+    ViewData["Title"] = "Job Details";
+}
+
+<h2 class="my-4">Job Details</h2>
+
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.JobDescription)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.RequiredProfiles)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.RequiredProfiles)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.ApplicationDeadline)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ApplicationDeadline)
+        </dd>
+        <dt class="col-sm-3">
+            Status
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.status ? "Allowed" : "Not Allowed")
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.JobId" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

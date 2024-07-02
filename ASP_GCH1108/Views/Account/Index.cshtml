@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityUser>
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<h2>User Management</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>User Id</th>
+            <th>UserName</th>
+            <th>Operating Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                @if (@user.EmailConfirmed == true)
+                {
+                    <td>Active</td>
+                }
+                else
+                {
+                    <td>Pause</td>
+                }
+                <td>
+                    <form asp-action="Pause" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@user.Id" />
+                        <button type="submit" class="btn btn-warning">Change Status</button>
+                    </form>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@user.Id" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br /><br /><br />

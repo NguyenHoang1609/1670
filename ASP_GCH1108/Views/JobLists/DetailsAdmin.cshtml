@@ -1,0 +1,53 @@
+﻿@model ASP_GCH1108.Models.JobList
+
+@{
+    ViewData["Title"] = "Job Application Details";
+}
+
+<div class="container">
+    <h2 class="text-center mt-5">@Model.UserName</h2>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h3>User Id: @Model.UserId</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Title: @Model.JobTitle</h5>
+            <p class="card-text">Deadline: @Model.ApplicationDeadline</p>
+            <p class="card-text">Status: @(Model.status == true ? "Accepted" : "Waiting")</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .card-body {
+        background-color: #f8f9fa;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mt-4 {
+        margin-top: 1.5rem;
+    }
+
+    .mt-5 {
+        margin-top: 3rem;
+    }
+</style>

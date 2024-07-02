@@ -1,0 +1,67 @@
+﻿@model JobList
+
+@{
+    ViewData["Title"] = "Edit Job";
+}
+
+<h2 class="my-4">Edit Job</h2>
+
+<form asp-action="Edit" class="needs-validation" novalidate>
+    <input type="hidden" asp-for="JobId" />
+    <div class="mb-3">
+        <label asp-for="JobTitle" class="form-label">Job Title</label>
+        <input asp-for="JobTitle" class="form-control" required />
+        <div class="invalid-feedback">
+            @Html.ValidationMessageFor(model => model.JobTitle)
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="JobDescription" class="form-label">Job Description</label>
+        <input asp-for="JobDescription" class="form-control" required />
+        <div class="invalid-feedback">
+            @Html.ValidationMessageFor(model => model.JobDescription)
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="RequiredProfiles" class="form-label">Required Profiles</label>
+        <input asp-for="RequiredProfiles" class="form-control" required />
+        <div class="invalid-feedback">
+            @Html.ValidationMessageFor(model => model.RequiredProfiles)
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ApplicationDeadline" class="form-label">Application Deadline</label>
+        <input asp-for="ApplicationDeadline" class="form-control" type="date" required />
+        <div class="invalid-feedback">
+            @Html.ValidationMessageFor(model => model.ApplicationDeadline)
+        </div>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+<br /><br /><br />
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+}

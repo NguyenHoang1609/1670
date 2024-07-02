@@ -1,0 +1,50 @@
+﻿@model IEnumerable<JobList>
+
+@{
+    ViewData["Title"] = "Job List";
+}
+
+<h2>Job List</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                UserName of Employer
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Function
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTitle)
+                </td>
+                <td>
+                    @(item.status ? "Allowed" : "Not Allowed")
+                </td>
+                <td>
+                    <a asp-action="Allow" asp-route-id="@item.JobId" class="btn btn-primary">Accept</a>
+                    <a asp-action="DetailsAdmin" asp-route-id="@item.JobId" class="btn btn-info">Details</a>
+                    <form asp-action="AdminDeleteConfirmed" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@item.JobId" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this job?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

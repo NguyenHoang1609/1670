@@ -1,0 +1,44 @@
+﻿@model ASP_GCH1108.Models.JobApplication
+
+@{
+    ViewData["Title"] = "Edit Job Application";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" enctype="multipart/form-data" method="post">
+    <input asp-for="JobList" class="form-control" asp-items="ViewBag.JobList" type="hidden"></input>
+    <input asp-for="JobId" class="form-control" asp-items="ViewBag.JobId" type="hidden"></input>
+    <div class="form-group">
+        <label asp-for="Introduction" class="control-label"></label>
+        <input asp-for="Introduction" class="form-control" />
+        <span asp-validation-for="Introduction" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Experience" class="control-label"></label>
+        <input asp-for="Experience" class="form-control" />
+        <span asp-validation-for="Experience" class="text-danger"></span>
+    </div>
+    @* <div class="form-group">
+        <label asp-for="QualificationId" class="control-label"></label>
+        <select asp-for="QualificationId" class="form-control" asp-items="ViewBag.QualificationId"></select>
+        <span asp-validation-for="QualificationId" class="text-danger"></span>
+    </div> *@
+    <div class="form-group">
+        <label asp-for="Picture" class="control-label">Upload Picture</label>
+        <input type="file" asp-for="Picture" class="form-control" />
+        <span asp-validation-for="Picture" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="JobId" />
+    <input type="hidden" asp-for="ApplicationId" />
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+<br />
+<br />
+<br />
